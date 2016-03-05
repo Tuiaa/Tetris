@@ -3,8 +3,6 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject Grid;
-
     // Use this for initialization
     void Start () {
 

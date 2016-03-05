@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scenes\Game\Scripts\Borders.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\CameraScaling.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\GameController.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Grid.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\TextureScaling.cs" />

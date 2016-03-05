@@ -8,6 +8,7 @@ public class Grid : MonoBehaviour
 {
     public Renderer GridRend;
     public GameObject Borders;
+    public Camera MainCamera;
 
     public float gridWidth = 10;
     public float gridHeight = 20;
@@ -21,6 +22,7 @@ public class Grid : MonoBehaviour
         changeGridScale();
         changeMaterialTiling();
         Borders.GetComponent<Borders>().borderPosition();
+        MainCamera.GetComponent<CameraScaling>().scaleCamera();
     }
 
     void changeGridScale()
