@@ -7,26 +7,26 @@ using System.Collections;
 public class Grid : MonoBehaviour
 {
     public Renderer GridRend;
+    public GameObject Borders;
 
     public float gridWidth = 10;
     public float gridHeight = 20;
+
+    public float gridScaleX;
+    public float gridScaleY;
 
     public void Start()
     {
         GridRend = GetComponent<Renderer>();
         changeGridScale();
         changeMaterialTiling();
-    }
-
-    void Update()
-    {
-
+        Borders.GetComponent<Borders>().borderPosition();
     }
 
     void changeGridScale()
     {
-        float gridScaleX = gridWidth / 10.0F;
-        float gridScaleY = gridHeight / 10.0F;
+        gridScaleX = gridWidth / 10.0F;
+        gridScaleY = gridHeight / 10.0F;
         transform.localScale += new Vector3(gridScaleX, 0, gridScaleY);
     }
 
@@ -34,4 +34,5 @@ public class Grid : MonoBehaviour
     {
         GridRend.material.mainTextureScale = new Vector2(gridWidth, gridHeight);
     }
+
 }
