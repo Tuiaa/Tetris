@@ -13,8 +13,8 @@ public class Borders : MonoBehaviour {
     public GameObject BorderUp;
     public GameObject BorderDown;
 
-    float positionX;
-    float positionY;
+    public float positionX;
+    public float positionY;
     float scaleX;
     float scaleY;
 

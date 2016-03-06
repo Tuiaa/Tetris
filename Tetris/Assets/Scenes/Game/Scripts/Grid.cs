@@ -19,8 +19,10 @@ public class Grid : MonoBehaviour
     public void Start()
     {
         GridRend = GetComponent<Renderer>();
+
         changeGridScale();
         changeMaterialTiling();
+
         Borders.GetComponent<Borders>().borderPosition();
         MainCamera.GetComponent<CameraScaling>().scaleCamera();
     }
@@ -36,5 +38,4 @@ public class Grid : MonoBehaviour
     {
         GridRend.material.mainTextureScale = new Vector2(gridWidth, gridHeight);
     }
-
 }
