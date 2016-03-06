@@ -62,8 +62,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scenes\Game\Scripts\BlockBoxPos.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\BlockSpawner.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Blocks.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\BoxPosition.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\I_BlockBox_Position.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\J_BlockBox_Position.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\L_BlockBox_Position.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\O_BlockBox_Position.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\S_BlockBox_Position.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\T_BlockBox_Position.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\Z_BlockBox_Position.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Borders.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\CameraScaling.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\GameController.cs" />

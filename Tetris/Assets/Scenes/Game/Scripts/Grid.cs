@@ -9,9 +9,13 @@ public class Grid : MonoBehaviour
     public Renderer GridRend;
     public GameObject Borders;
     public Camera MainCamera;
+    public GameObject[,] blockPositions;
+    public GameObject BlockSpawn;
 
-    public float gridWidth = 10;
-    public float gridHeight = 20;
+    public enum Directions { LEFT, RIGHT, DOWN };
+
+    public int gridWidth = 10;
+    public int gridHeight = 20;
 
     public float gridScaleX;
     public float gridScaleY;
@@ -25,17 +29,65 @@ public class Grid : MonoBehaviour
 
         Borders.GetComponent<Borders>().borderPosition();
         MainCamera.GetComponent<CameraScaling>().scaleCamera();
+        blockPositions = new GameObject[gridWidth, gridHeight];
+        initializeArray();
     }
 
     void changeGridScale()
     {
-        gridScaleX = gridWidth / 10.0F;
-        gridScaleY = gridHeight / 10.0F;
+        gridScaleX = (float)gridWidth / 10.0F;
+        gridScaleY = (float)gridHeight / 10.0F;
         transform.localScale += new Vector3(gridScaleX, 0, gridScaleY);
     }
 
     void changeMaterialTiling()
     {
         GridRend.material.mainTextureScale = new Vector2(gridWidth, gridHeight);
+    }
+
+    void initializeArray()
+    {
+        for (int i = 0; i < gridWidth; i++)
+        {
+            for (int j = 0; j < gridHeight; j++)
+
+            {
+                blockPositions[i, j] = null;
+            }
+        }
+    }
+
+    public bool checkArray(Directions dir)
+    {
+        int blockBoxPosX;
+        int blockBoxPosY;
+        GameObject currentBlock = BlockSpawn.transform.GetChild(0).gameObject;
+
+        for (int i = 0; i < currentBlock.transform.childCount; i++)
+        {
+            GameObject child = currentBlock.transform.GetChild(i).gameObject;
+
+            blockBoxPosX = child.GetComponent<BoxPosition>().arrayPosX;
+            blockBoxPosY = child.GetComponent<BoxPosition>().arrayPosY;
+
+            if(dir == Directions.LEFT)
+            {
+                blockBoxPosX -= 1;
+               // blockPositions[blockBoxPosX - 1, blockBoxPosY] = child;
+            } else if (dir == Directions.RIGHT)
+            {
+                blockBoxPosX += 1;
+            } else if (dir == Directions.DOWN)
+            {
+                blockBoxPosY -= 1;
+            }
+
+            if (blockPositions[blockBoxPosX, blockBoxPosY] != null)
+            {
+                return false;
+            }
+
+        }
+        return true;
     }
 }

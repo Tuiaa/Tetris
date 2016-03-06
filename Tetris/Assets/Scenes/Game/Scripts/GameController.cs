@@ -3,11 +3,11 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject spawner;
+    public GameObject Spawner;
 
     void Start ()
     {
-        spawner.GetComponent<BlockSpawner>().spawnBlock();
+        Spawner.GetComponent<BlockSpawner>().spawnBlock();
     }
 	
 	// Update is called once per frame
