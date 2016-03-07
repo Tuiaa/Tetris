@@ -20,8 +20,22 @@ public class Borders : MonoBehaviour {
 
     public void borderPosition()
     {
-        positionX = (Grid.GetComponent<Grid>().gridWidth / 2) + 0.5F;
-        positionY = (Grid.GetComponent<Grid>().gridHeight / 2) + 0.5F;
+        if (Grid.GetComponent<Grid>().gridWidth % 2 == 0)
+        {
+            positionX = (Grid.GetComponent<Grid>().gridWidth / 2) + 0.5F;
+        }
+        else
+        {
+            positionX = (Grid.GetComponent<Grid>().gridWidth / 2) + (Grid.GetComponent<Grid>().gridWidth % 2);
+        }
+        if (Grid.GetComponent<Grid>().gridHeight % 2 == 0)
+        {
+            positionY = (Grid.GetComponent<Grid>().gridHeight / 2) + 0.5F;
+        }
+        else
+        {
+            positionY = (Grid.GetComponent<Grid>().gridHeight / 2) + (Grid.GetComponent<Grid>().gridHeight % 2);
+        }
 
         scaleX = Grid.GetComponent<Grid>().gridScaleX;
         scaleY = Grid.GetComponent<Grid>().gridScaleY;

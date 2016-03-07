@@ -21,8 +21,7 @@ public class I_BlockBox_Position : MonoBehaviour {
     public void setStartPositions () {
 
         arrayPosX = (Grid.GetComponent<Grid>().gridWidth / 2) + Grid.GetComponent<Grid>().gridWidth % 2;
-        arrayPosY = Grid.GetComponent<Grid>().gridHeight / 2;
-        Debug.Log("arrayposY: " + arrayPosY);
+        arrayPosY = Grid.GetComponent<Grid>().gridHeight - 1;
 
         box1.GetComponent<BoxPosition>().arrayPosX = arrayPosX;
         box1.GetComponent<BoxPosition>().arrayPosY = arrayPosY;

@@ -2,7 +2,7 @@
 using System.Collections;
 
 /*
- *  Spawns blocks and keeps track of their positions
+ *  Spawns blocks
  */
 public class BlockSpawner : MonoBehaviour
 {
@@ -15,8 +15,6 @@ public class BlockSpawner : MonoBehaviour
     int current;
     int next;
 
-    float spawnPosY;
-
     float height;
     float width;
 
@@ -28,13 +26,33 @@ public class BlockSpawner : MonoBehaviour
 
     public void spawnBlock()
     {
-        spawnPosY = (Grid.GetComponent<Grid>().gridHeight / 2);
-
+        float spawnPosY = (Grid.GetComponent<Grid>().gridHeight / 2);
+        
         if (firstBlock == false)
         {
             current = Random.Range(0, 6);
-            //block = Instantiate(blocks[current], new Vector3(0.5F, spawnPosY, -0.5F), Quaternion.identity) as GameObject;
-            block = Instantiate(blocks[0], new Vector3(0.5F, spawnPosY, -0.5F), Quaternion.identity) as GameObject;
+            
+            /* Check if grid size is odd or even */
+            if (Grid.GetComponent<Grid>().gridWidth % 2 == 0 && Grid.GetComponent<Grid>().gridHeight % 2 == 0)
+            {
+                block = Instantiate(blocks[0], new Vector3(0.5F, spawnPosY, -0.5F), Quaternion.identity) as GameObject;
+            }
+            else if (Grid.GetComponent<Grid>().gridWidth % 2 == 0 && Grid.GetComponent<Grid>().gridHeight % 2 != 0)
+            {
+                block = Instantiate(blocks[0], new Vector3(0.5F, spawnPosY + 0.5F, -0.5F), Quaternion.identity) as GameObject;
+            }
+            else if (Grid.GetComponent<Grid>().gridWidth % 2 != 0 && Grid.GetComponent<Grid>().gridHeight % 2 == 0)
+            {
+                block = Instantiate(blocks[0], new Vector3(1.0F, spawnPosY, -0.5F), Quaternion.identity) as GameObject;
+            }
+            else if (Grid.GetComponent<Grid>().gridWidth % 2 != 0 && Grid.GetComponent<Grid>().gridHeight % 2 != 0)
+            {
+                block = Instantiate(blocks[0], new Vector3(1.0F, spawnPosY + 0.5F, -0.5F), Quaternion.identity) as GameObject;
+            }
+
+
+
+
             block.name = "CurrentBlock";
             
             block.transform.parent = transform;

@@ -2,7 +2,7 @@
 using System.Collections;
 
 /*
- *  Grid creation and scaling
+ *  Grid creation and scaling, keeps track of block positions
  */
 public class Grid : MonoBehaviour
 {
@@ -73,20 +73,28 @@ public class Grid : MonoBehaviour
             if(dir == Directions.LEFT)
             {
                 blockBoxPosX -= 1;
-               // blockPositions[blockBoxPosX - 1, blockBoxPosY] = child;
-            } else if (dir == Directions.RIGHT)
+            }
+            else if (dir == Directions.RIGHT)
             {
                 blockBoxPosX += 1;
-            } else if (dir == Directions.DOWN)
+            }
+            else if (dir == Directions.DOWN)
             {
                 blockBoxPosY -= 1;
             }
 
-            if (blockPositions[blockBoxPosX, blockBoxPosY] != null)
+            if (blockBoxPosY + 1 == 0)
             {
                 return false;
             }
-
+            else if (blockBoxPosX == gridWidth || blockBoxPosX + 1 == 0)
+            {
+                return false;
+            }
+            else if (blockPositions[blockBoxPosX, blockBoxPosY] != null)
+            {
+                return false;
+            }
         }
         return true;
     }
