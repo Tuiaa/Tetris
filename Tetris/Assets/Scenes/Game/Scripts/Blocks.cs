@@ -14,14 +14,14 @@ public class Blocks : MonoBehaviour
 
     void Start()
     {
-        nextMove = Time.time + 1.0F;
+        /*nextMove = Time.time + 1.0F;
         grid = GameObject.Find("Grid");
-        blockSpawner = GameObject.Find("BlockSpawner");
+        blockSpawner = GameObject.Find("BlockSpawner");*/
     }
 
     void Update()
     {
-        if (Time.time > nextMove)
+       /* if (Time.time > nextMove)
         {
             bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
             if(canMove)
@@ -63,10 +63,10 @@ public class Blocks : MonoBehaviour
                 transform.position += new Vector3(0, -1, 0);
                 updateBoxPositions(0, -1);
             }
-        }
+        }*/
     }
 
-    void updateBoxPositions(int posX, int posY)
+   public void updateBoxPositions(int posX, int posY)
     {
         for (int i = 0; i < transform.childCount; i++)
         {
