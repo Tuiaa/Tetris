@@ -4,6 +4,7 @@ using System.Collections;
 public class Blocks : MonoBehaviour
 {
     public GameObject grid;
+    public GameObject blockSpawner;
 
     public int blockBoxPosX;
     public int blockBoxPosY;
@@ -15,6 +16,7 @@ public class Blocks : MonoBehaviour
     {
         nextMove = Time.time + 1.0F;
         grid = GameObject.Find("Grid");
+        blockSpawner = GameObject.Find("BlockSpawner");
     }
 
     void Update()
@@ -27,6 +29,10 @@ public class Blocks : MonoBehaviour
                 transform.position += new Vector3(0, -1, 0);
                 nextMove = Time.time + movingSpeed;
                 updateBoxPositions(0, -1);
+            } else
+            {
+                grid.GetComponent<Grid>().moveToStuckBlocks();
+                blockSpawner.GetComponent<BlockSpawner>().spawnBlock();
             }
         }
 

@@ -8,20 +8,20 @@ public class I_BlockBox_Position : MonoBehaviour {
     public GameObject box3;
     public GameObject box4;
 
-    public GameObject Grid;
+    public GameObject grid;
 
     public int arrayPosX;
     public int arrayPosY;
 
     void Awake()
     {
-        Grid = GameObject.Find("Grid");
+        grid = GameObject.Find("Grid");
     }
 
     public void setStartPositions () {
 
-        arrayPosX = (Grid.GetComponent<Grid>().gridWidth / 2) + Grid.GetComponent<Grid>().gridWidth % 2;
-        arrayPosY = Grid.GetComponent<Grid>().gridHeight - 1;
+        arrayPosX = (grid.GetComponent<Grid>().gridWidth / 2) + grid.GetComponent<Grid>().gridWidth % 2;
+        arrayPosY = grid.GetComponent<Grid>().gridHeight - 1;
 
         box1.GetComponent<BoxPosition>().arrayPosX = arrayPosX;
         box1.GetComponent<BoxPosition>().arrayPosY = arrayPosY;

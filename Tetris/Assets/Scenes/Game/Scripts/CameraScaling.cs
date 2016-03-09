@@ -6,8 +6,8 @@ using System.Collections;
  */
 public class CameraScaling : MonoBehaviour {
 
-    public Transform Grid;
-    public Camera MainCam;
+    public Transform grid;
+    public Camera mainCam;
 
     public float scale;
     public float height;
@@ -17,15 +17,15 @@ public class CameraScaling : MonoBehaviour {
 
     public void scaleCamera()
     {
-        height = Grid.GetComponent<Grid>().gridHeight;
+        height = grid.GetComponent<Grid>().gridHeight;
         scale = (height * scaleMultiplier) + 1;
 
         if (scale < minHeight)
         {
-            MainCam.orthographicSize = minHeight;
+            mainCam.orthographicSize = minHeight;
         } else
         {
-            MainCam.orthographicSize = scale;
+            mainCam.orthographicSize = scale;
         }
     }
 }

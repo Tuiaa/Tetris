@@ -8,9 +8,12 @@ public class Grid : MonoBehaviour
 {
     public Renderer GridRend;
     public GameObject Borders;
-    public Camera MainCamera;
+    public Camera mainCamera;
     public GameObject[,] blockPositions;
-    public GameObject BlockSpawn;
+    public GameObject blockSpawn;
+    public GameObject stuckBlock;
+
+    public GameObject currentBlock;
 
     public enum Directions { LEFT, RIGHT, DOWN };
 
@@ -28,7 +31,7 @@ public class Grid : MonoBehaviour
         changeMaterialTiling();
 
         Borders.GetComponent<Borders>().borderPosition();
-        MainCamera.GetComponent<CameraScaling>().scaleCamera();
+        mainCamera.GetComponent<CameraScaling>().scaleCamera();
         blockPositions = new GameObject[gridWidth, gridHeight];
         initializeArray();
     }
@@ -61,7 +64,6 @@ public class Grid : MonoBehaviour
     {
         int blockBoxPosX;
         int blockBoxPosY;
-        GameObject currentBlock = BlockSpawn.transform.GetChild(0).gameObject;
 
         for (int i = 0; i < currentBlock.transform.childCount; i++)
         {
@@ -97,5 +99,23 @@ public class Grid : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void moveToStuckBlocks()
+    {
+        for (int i = currentBlock.transform.childCount -1; i >= 0; i--)
+        {
+            GameObject child = currentBlock.transform.GetChild(i).gameObject;
+            child.transform.parent = stuckBlock.transform;
+            updateBlockPositionArray(child);
+        }
+        Destroy(currentBlock);
+    }
+
+    void updateBlockPositionArray(GameObject child)
+    {
+        int x = child.GetComponent<BoxPosition>().arrayPosX;
+        int y = child.GetComponent<BoxPosition>().arrayPosY;
+        blockPositions[x, y] = child;
     }
 }

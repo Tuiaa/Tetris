@@ -6,12 +6,12 @@ using System.Collections;
  */
 public class Borders : MonoBehaviour {
 
-    public GameObject Grid;
+    public GameObject grid;
 
-    public GameObject BorderLeft;
-    public GameObject BorderRight;
-    public GameObject BorderUp;
-    public GameObject BorderDown;
+    public GameObject borderLeft;
+    public GameObject borderRight;
+    public GameObject borderUp;
+    public GameObject borderDown;
 
     public float positionX;
     public float positionY;
@@ -20,36 +20,36 @@ public class Borders : MonoBehaviour {
 
     public void borderPosition()
     {
-        if (Grid.GetComponent<Grid>().gridWidth % 2 == 0)
+        if (grid.GetComponent<Grid>().gridWidth % 2 == 0)
         {
-            positionX = (Grid.GetComponent<Grid>().gridWidth / 2) + 0.5F;
+            positionX = (grid.GetComponent<Grid>().gridWidth / 2) + 0.5F;
         }
         else
         {
-            positionX = (Grid.GetComponent<Grid>().gridWidth / 2) + (Grid.GetComponent<Grid>().gridWidth % 2);
+            positionX = (grid.GetComponent<Grid>().gridWidth / 2) + (grid.GetComponent<Grid>().gridWidth % 2);
         }
-        if (Grid.GetComponent<Grid>().gridHeight % 2 == 0)
+        if (grid.GetComponent<Grid>().gridHeight % 2 == 0)
         {
-            positionY = (Grid.GetComponent<Grid>().gridHeight / 2) + 0.5F;
+            positionY = (grid.GetComponent<Grid>().gridHeight / 2) + 0.5F;
         }
         else
         {
-            positionY = (Grid.GetComponent<Grid>().gridHeight / 2) + (Grid.GetComponent<Grid>().gridHeight % 2);
+            positionY = (grid.GetComponent<Grid>().gridHeight / 2) + (grid.GetComponent<Grid>().gridHeight % 2);
         }
 
-        scaleX = Grid.GetComponent<Grid>().gridScaleX;
-        scaleY = Grid.GetComponent<Grid>().gridScaleY;
+        scaleX = grid.GetComponent<Grid>().gridScaleX;
+        scaleY = grid.GetComponent<Grid>().gridScaleY;
 
-        BorderLeft.transform.localScale += new Vector3(0.1F, 0, scaleY + 0.2F);
-        BorderLeft.transform.position = new Vector3(-positionX, 0, 0);
+        borderLeft.transform.localScale += new Vector3(0.1F, 0, scaleY + 0.2F);
+        borderLeft.transform.position = new Vector3(-positionX, 0, 0);
 
-        BorderRight.transform.localScale += new Vector3(0.1F, 0, scaleY + 0.2F);
-        BorderRight.transform.position = new Vector3(+positionX, 0, 0);
+        borderRight.transform.localScale += new Vector3(0.1F, 0, scaleY + 0.2F);
+        borderRight.transform.position = new Vector3(+positionX, 0, 0);
 
-        BorderUp.transform.localScale += new Vector3(scaleX, 0, 0.1F);
-        BorderUp.transform.position = new Vector3(0, positionY, 0);
+        borderUp.transform.localScale += new Vector3(scaleX, 0, 0.1F);
+        borderUp.transform.position = new Vector3(0, positionY, 0);
 
-        BorderDown.transform.localScale += new Vector3(scaleX, 0, 0.1F);
-        BorderDown.transform.position = new Vector3(0, -positionY, 0);
+        borderDown.transform.localScale += new Vector3(scaleX, 0, 0.1F);
+        borderDown.transform.position = new Vector3(0, -positionY, 0);
     }
 }
