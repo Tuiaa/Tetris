@@ -26,7 +26,7 @@ public class BlockSpawner : MonoBehaviour
             /* Check if grid size is odd or even */
             if (grid.GetComponent<Grid>().gridWidth % 2 == 0 && grid.GetComponent<Grid>().gridHeight % 2 == 0)
             {
-                block = Instantiate(blocks[current], new Vector3(0.5F, spawnPosY, -0.5F), Quaternion.identity) as GameObject;
+                block = Instantiate(blocks[0], new Vector3(0.5F, spawnPosY, -0.5F), Quaternion.identity) as GameObject;
             }
             else if (grid.GetComponent<Grid>().gridWidth % 2 == 0 && grid.GetComponent<Grid>().gridHeight % 2 != 0)
             {

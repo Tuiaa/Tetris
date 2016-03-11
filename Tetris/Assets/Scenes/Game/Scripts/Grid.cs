@@ -12,10 +12,11 @@ public class Grid : MonoBehaviour
     public GameObject[,] blockPositions;
     public GameObject blockSpawn;
     public GameObject stuckBlock;
+    public GameObject gameController;
 
     public GameObject currentBlock;
 
-    public enum Directions { LEFT, RIGHT, DOWN };
+    public enum Directions { LEFT, RIGHT, DOWN, UP };
 
     public int gridWidth = 10;
     public int gridHeight = 20;
@@ -83,6 +84,11 @@ public class Grid : MonoBehaviour
             else if (dir == Directions.DOWN)
             {
                 blockBoxPosY -= 1;
+            }
+            else if (dir == Directions.UP)
+            {
+                blockBoxPosX -= gameController.GetComponent<GameController>().rotatePosX;
+                blockBoxPosY -= gameController.GetComponent<GameController>().rotatePosY;
             }
 
             if (blockBoxPosY + 1 == 0)

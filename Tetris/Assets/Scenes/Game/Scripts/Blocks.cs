@@ -16,4 +16,19 @@ public class Blocks : MonoBehaviour
             child.GetComponent<BoxPosition>().arrayPosY += posY;
         }
     }
+
+    public void rotateLeftArrayPos()
+    {
+       /* box1.GetComponent<BoxPosition>().arrayPosX += -2;
+        box1.GetComponent<BoxPosition>().arrayPosY += -1;
+
+        box2.GetComponent<BoxPosition>().arrayPosX += -1;
+        box2.GetComponent<BoxPosition>().arrayPosY += 0;
+
+        box3.GetComponent<BoxPosition>().arrayPosX += 0;
+        box3.GetComponent<BoxPosition>().arrayPosY += 1;
+
+        box4.GetComponent<BoxPosition>().arrayPosX += 1;
+        box4.GetComponent<BoxPosition>().arrayPosY += 2;*/
+    }
 }

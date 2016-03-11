@@ -8,4 +8,7 @@ public class BoxPosition : MonoBehaviour {
 
     public int arrayPosX = 0;
     public int arrayPosY = 0;
+
+    public int offSetX = 0;
+    public int offSetY = 0;
 }

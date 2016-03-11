@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour {
 
     public int blockBoxPosX;
     public int blockBoxPosY;
+    public int rotatePosX;
+    public int rotatePosY;
 
     public float nextMove = 0.0F;
     public float movingSpeed = 1.0F;
@@ -72,6 +74,14 @@ public class GameController : MonoBehaviour {
                block.GetComponent<Blocks>().updateBoxPositions(0, -1);
             }
         }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.UP);
+            if (canMove)
+            {
+                rotateArrayPos();
+            }
+        }
     }
 
     // TODO: Move
@@ -82,6 +92,34 @@ public class GameController : MonoBehaviour {
             GameObject child = block.transform.GetChild(i).gameObject;
             child.GetComponent<BoxPosition>().arrayPosX += posX;
             child.GetComponent<BoxPosition>().arrayPosY += posY;
+        }
+    }
+
+    public void rotateArrayPos()
+    {
+        for (int i = 0; i < block.transform.childCount; i++)
+        {
+            GameObject child = block.transform.GetChild(i).gameObject;
+            int childLocalPosX = (int)child.transform.localPosition.x;
+            int childLocalPosY = (int)child.transform.localPosition.y;
+
+            int childArrayPosX = (int)child.GetComponent<BoxPosition>().offSetX;
+            int childArrayPosY = (int)child.GetComponent<BoxPosition>().offSetY;
+            //Debug.Log("childposX = " + childPosX + " childposY = " + childPosY);
+
+            // Rotation matrix, X: cos(-PI/2) * x + -sin(-PI/2), Y: sin(-PI/2) + cos(-PI/2)
+
+            rotatePosX = (0 * childLocalPosX) + (1 * childLocalPosY);
+            rotatePosY = (-1 * childLocalPosX) + (0 * childLocalPosY);
+
+            rotatePosX = (0 * childArrayPosX) + (1 * childArrayPosY);
+            rotatePosY = (-1 * childArrayPosX) + (0 * childArrayPosY);
+
+            Debug.Log("posX = " + rotatePosX + " posY = " + rotatePosY);
+            childLocalPosX = rotatePosX;
+            childLocalPosY = rotatePosY;
+            child.transform.localPosition = new Vector3(rotatePosX, rotatePosY, 0);
+            updateBoxPositions(rotatePosX, rotatePosY);
         }
     }
 }
