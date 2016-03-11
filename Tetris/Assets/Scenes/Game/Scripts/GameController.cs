@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ *  Moves blocks, updates their positions, ends game
+ */
 public class GameController : MonoBehaviour {
 
     public GameObject spawner;
@@ -71,6 +74,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    // TODO: Move
     void updateBoxPositions(int posX, int posY)
     {
         for (int i = 0; i < block.transform.childCount; i++)
