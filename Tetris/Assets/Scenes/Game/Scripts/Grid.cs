@@ -59,6 +59,23 @@ public class Grid : MonoBehaviour
         }
     }
 
+    public bool checkRotation()
+    {
+        for (int i = 0; i < currentBlock.transform.childCount; i++)
+        {
+            GameObject child = currentBlock.transform.GetChild(i).gameObject;
+
+            int arrayPosX = child.GetComponent<BoxPosition>().arrayPosX;
+            int arrayPosY = child.GetComponent<BoxPosition>().arrayPosY;
+
+            if (blockPositions[arrayPosX, arrayPosY] != null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public bool checkArray(Directions dir)
     {
         int blockBoxPosX;
@@ -82,11 +99,6 @@ public class Grid : MonoBehaviour
             else if (dir == Directions.DOWN)
             {
                 blockBoxPosY -= 1;
-            }
-            else if (dir == Directions.UP)
-            {
-                blockBoxPosX -= gameController.GetComponent<GameController>().rotatePosX;
-                blockBoxPosY -= gameController.GetComponent<GameController>().rotatePosY;
             }
 
             if (blockBoxPosY + 1 == 0)

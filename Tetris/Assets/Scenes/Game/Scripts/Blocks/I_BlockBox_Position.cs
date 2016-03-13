@@ -32,9 +32,25 @@ public class I_BlockBox_Position : MonoBehaviour
     {
         arrayPosX = xArray;
         arrayPosY = yArray;
+        updateChildArrayPos();
+    }
+
+    public void updateChildArrayPos()
+    {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).GetComponent<BoxPosition>().setArrayPositions(xArray, yArray);
+            transform.GetChild(i).GetComponent<BoxPosition>().setArrayPositions(arrayPosX, arrayPosY);
+        }
+    }
+
+    public void moveBlock(Grid.Directions direction, int amount)
+    {
+        // Down Grid.Direction
+        if (direction == Grid.Directions.DOWN)
+        {
+            arrayPosY = arrayPosY - amount;
+            updateChildArrayPos();
+            grid.GetComponent<Grid>().setUnityPosition(gameObject,arrayPosX, arrayPosY);
         }
     }
 

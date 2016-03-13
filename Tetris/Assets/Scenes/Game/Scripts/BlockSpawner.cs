@@ -26,12 +26,12 @@ public class BlockSpawner : MonoBehaviour
 
         block = Instantiate(blocks[0],new Vector3(0,0,0), Quaternion.identity) as GameObject;
 
-        int blockOffset = block.GetComponent<I_BlockBox_Position>().startYOffset;
+        int blockOffset = block.GetComponent<CurrentBlock>().startYOffset;
         int spawnPosX = gr.gridWidth / 2;
         int spawnPosY = gr.gridHeight - 1 + blockOffset;
 
         grid.GetComponent<Grid>().setUnityPosition(block, spawnPosX, spawnPosY);
-        block.GetComponent<I_BlockBox_Position>().setArrayPositions(spawnPosX, spawnPosY);
+        block.GetComponent<CurrentBlock>().setArrayPositions(spawnPosX, spawnPosY);
         
         grid.GetComponent<Grid>().currentBlock = block;
         block.name = "CurrentBlock";

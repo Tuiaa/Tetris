@@ -17,8 +17,10 @@ public class Blocks : MonoBehaviour
         }
     }
 
-    public void rotateLeftArrayPos()
+    public void rotateUnityPos()
     {
+
+
        /* box1.GetComponent<BoxPosition>().arrayPosX += -2;
         box1.GetComponent<BoxPosition>().arrayPosY += -1;
 

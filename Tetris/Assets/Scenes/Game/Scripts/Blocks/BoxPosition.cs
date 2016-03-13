@@ -3,7 +3,7 @@ using System.Collections;
 
 /*
  *  Keeps track of the position of box that is inserted into an array
- *  Knows the rotation pivot (offset)
+ *  Knows the rotation point (offset)
  */
 public class BoxPosition : MonoBehaviour {
 
@@ -22,5 +22,11 @@ public class BoxPosition : MonoBehaviour {
     {
         arrayPosX = parentArrayX + offSetX;
         arrayPosY = parentArrayY + offSetY;
+    }
+
+    public void setOffset(int xOffSet, int yOffSet)
+    {
+        offSetX = xOffSet;
+        offSetY = yOffSet;
     }
 }
