@@ -67,6 +67,22 @@ public class Grid : MonoBehaviour
 
             int arrayPosX = child.GetComponent<BoxPosition>().arrayPosX;
             int arrayPosY = child.GetComponent<BoxPosition>().arrayPosY;
+            if (arrayPosX < 0)
+            {
+                return false;
+            }
+            else if(arrayPosY < 0)
+            {
+                return false;
+            }
+            else if(arrayPosX > gridWidth - 1)
+            {
+                return false;
+            }
+            else if(arrayPosY > gridHeight - 1)
+            {
+                return false;
+            }
 
             if (blockPositions[arrayPosX, arrayPosY] != null)
             {
@@ -138,5 +154,82 @@ public class Grid : MonoBehaviour
     public void setUnityPosition(GameObject obj, int xGridPos, int yGridPos)
     {
         obj.transform.position = new Vector3(xGridPos + 0.5f,yGridPos + 1.0f);
+    }
+
+    public void removeRow()
+    {
+        GameObject[,] tempArray = new GameObject[gridWidth, gridHeight];
+        for (int i = 0; i < gridWidth; i++)
+        {
+            for (int j = 0; j < gridHeight; j++)
+            {
+                tempArray[i, j] = null;
+            }
+        }
+
+        bool[] rowsToRemove = checkRowsToBeRemoved();
+        int width = 0;
+        int height = 0;
+
+        for (int i = 0; i < gridHeight; i++)
+        {
+            if (rowsToRemove[i] == false)
+            {
+                for (int j = 0; j < gridWidth; j++)
+                {
+                    tempArray[width,height] = blockPositions[j,i];
+                    width++;
+                }
+                width = 0;
+                height++;
+            } 
+            else
+            {
+                for (int j = 0; j < gridWidth; j++)
+                {
+                    Destroy (blockPositions[j, i]);
+                }
+                for (int a = i; a < gridHeight;a++)
+                    for (int b = 0; b < gridWidth;b++)
+                    {
+                        if (blockPositions[b,a] != null)
+                        {
+                            blockPositions[b, a].GetComponent<BoxPosition>().moveBox(Grid.Directions.DOWN, 1);
+                        }
+                    }
+
+                
+            }
+        }
+
+        blockPositions = tempArray;
+    }
+
+    bool[] checkRowsToBeRemoved()
+    {
+        bool[] rowsToRemove = new bool[gridHeight];
+        bool isFull = true;
+
+        for (int i = 0; i < gridHeight; i++)
+        {
+            for (int j = 0; j < gridWidth; j++)
+            {
+                if (blockPositions[j,i] == null)
+                {
+                    isFull = false;
+                    break;
+                }
+            }
+            if (isFull)
+            {
+                rowsToRemove[i] = true;
+            }
+            else
+            {
+                rowsToRemove[i] = false;
+            }
+            isFull = true;
+        }
+        return rowsToRemove;
     }
 }

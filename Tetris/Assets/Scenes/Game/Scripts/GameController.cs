@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
             else
             {
                 grid.GetComponent<Grid>().moveToStuckBlocks();
+                grid.GetComponent<Grid>().removeRow();
                 spawner.GetComponent<BlockSpawner>().spawnBlock();
             }
         }
@@ -67,15 +68,15 @@ public class GameController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
-            if (canMove)
+            while (canMove)
             {
                 block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.DOWN, movingSpeed);
+                canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
             }
-            else
-            {
+
                 grid.GetComponent<Grid>().moveToStuckBlocks();
+                grid.GetComponent<Grid>().removeRow();
                 spawner.GetComponent<BlockSpawner>().spawnBlock();
-            }
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -97,36 +98,7 @@ public class GameController : MonoBehaviour
 
     public void rotateBlock()
     {
-        for (int i = 0; i < block.transform.childCount; i++)
-        {
-            GameObject child = block.transform.GetChild(i).gameObject;
-
-            int arrayPosX = child.GetComponent<BoxPosition>().arrayPosX;
-            int arrayPosY = child.GetComponent<BoxPosition>().arrayPosY;
-
-            int offSetX = child.GetComponent<BoxPosition>().offSetX;
-            int offSetY = child.GetComponent<BoxPosition>().offSetY;
-
-            rotatedPosX = (0 * offSetX) + (1 * offSetY);
-            rotatedPosY = (-1 * offSetX) + (0 * offSetY);
-
-            child.GetComponent<BoxPosition>().setOffset(rotatedPosX, rotatedPosY);
-
-            block.GetComponent<CurrentBlock>().updateChildArrayPos();
-
-
-
-            /*
-             // bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.UP);
-            bool canMove = true;
-            if (canMove)
-            {
-        */
-        }
-
-        bool canRotate = grid.GetComponent<Grid>().checkRotation();
-
-        if (canRotate)
+        if (block.GetComponent<CurrentBlock>().canBlockRotate == true)
         {
             for (int i = 0; i < block.transform.childCount; i++)
             {
@@ -135,25 +107,55 @@ public class GameController : MonoBehaviour
                 int arrayPosX = child.GetComponent<BoxPosition>().arrayPosX;
                 int arrayPosY = child.GetComponent<BoxPosition>().arrayPosY;
 
-
-
-                grid.GetComponent<Grid>().setUnityPosition(child, child.GetComponent<BoxPosition>().arrayPosX, child.GetComponent<BoxPosition>().arrayPosY);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < block.transform.childCount; i++)
-            {
-                GameObject child = block.transform.GetChild(i).gameObject;
                 int offSetX = child.GetComponent<BoxPosition>().offSetX;
                 int offSetY = child.GetComponent<BoxPosition>().offSetY;
 
-                rotatedPosX = (0 * offSetX) + (-1 * offSetY);
-                rotatedPosY = (1 * offSetX) + (0 * offSetY);
+                rotatedPosX = (0 * offSetX) + (1 * offSetY);
+                rotatedPosY = (-1 * offSetX) + (0 * offSetY);
 
                 child.GetComponent<BoxPosition>().setOffset(rotatedPosX, rotatedPosY);
 
                 block.GetComponent<CurrentBlock>().updateChildArrayPos();
+
+                /*
+                 // bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.UP);
+                bool canMove = true;
+                if (canMove)
+                {
+            */
+            }
+
+            bool canRotate = grid.GetComponent<Grid>().checkRotation();
+
+            if (canRotate)
+            {
+                for (int i = 0; i < block.transform.childCount; i++)
+                {
+                    GameObject child = block.transform.GetChild(i).gameObject;
+
+                    int arrayPosX = child.GetComponent<BoxPosition>().arrayPosX;
+                    int arrayPosY = child.GetComponent<BoxPosition>().arrayPosY;
+
+
+
+                    grid.GetComponent<Grid>().setUnityPosition(child, child.GetComponent<BoxPosition>().arrayPosX, child.GetComponent<BoxPosition>().arrayPosY);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < block.transform.childCount; i++)
+                {
+                    GameObject child = block.transform.GetChild(i).gameObject;
+                    int offSetX = child.GetComponent<BoxPosition>().offSetX;
+                    int offSetY = child.GetComponent<BoxPosition>().offSetY;
+
+                    rotatedPosX = (0 * offSetX) + (-1 * offSetY);
+                    rotatedPosY = (1 * offSetX) + (0 * offSetY);
+
+                    child.GetComponent<BoxPosition>().setOffset(rotatedPosX, rotatedPosY);
+
+                    block.GetComponent<CurrentBlock>().updateChildArrayPos();
+                }
             }
         }
     }

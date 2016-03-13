@@ -24,7 +24,7 @@ public class BlockSpawner : MonoBehaviour
         current = Random.Range(0, 6);
         Grid gr = grid.GetComponent<Grid>();
 
-        block = Instantiate(blocks[0],new Vector3(0,0,0), Quaternion.identity) as GameObject;
+        block = Instantiate(blocks[current],new Vector3(0,0,0), Quaternion.identity) as GameObject;
 
         int blockOffset = block.GetComponent<CurrentBlock>().startYOffset;
         int spawnPosX = gr.gridWidth / 2;

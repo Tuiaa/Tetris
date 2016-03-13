@@ -11,6 +11,8 @@ public class CurrentBlock : MonoBehaviour
     public int arrayPosX;
     public int arrayPosY;
 
+    public bool canBlockRotate = true;
+
     public int startYOffset = 0;
 
     void Awake()

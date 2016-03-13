@@ -29,4 +29,26 @@ public class BoxPosition : MonoBehaviour {
         offSetX = xOffSet;
         offSetY = yOffSet;
     }
+
+    public void moveBox(Grid.Directions dir, int amount)
+    {
+        Grid grid = GameObject.Find("Grid").GetComponent<Grid>();
+        if (dir == Grid.Directions.DOWN)
+        {
+            arrayPosY = arrayPosY - amount;
+        }
+        if (dir == Grid.Directions.UP)
+        {
+            arrayPosY = arrayPosY + amount;
+        }
+        if (dir == Grid.Directions.LEFT)
+        {
+            arrayPosX = arrayPosX - amount;
+        }
+        if (dir == Grid.Directions.RIGHT)
+        {
+            arrayPosX = arrayPosX + amount;
+        }
+        grid.setUnityPosition(gameObject, arrayPosX, arrayPosY);
+    }
 }
