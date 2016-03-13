@@ -32,7 +32,8 @@ public class GameController : MonoBehaviour {
 
         if (Time.time > nextMove)
         {
-            bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
+            // bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
+            bool canMove = true;
             if (canMove)
             {
                 block.transform.position += new Vector3(0, -1, 0);

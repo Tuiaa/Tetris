@@ -17,6 +17,8 @@ public class I_BlockBox_Position : MonoBehaviour
     public int arrayPosX;
     public int arrayPosY;
 
+    public int startYOffset = 0;
+
     void Awake()
     {
         grid = GameObject.Find("Grid");
@@ -24,34 +26,52 @@ public class I_BlockBox_Position : MonoBehaviour
 
     void Start()
     {
-        setStartPositions();
+    }
+
+    public void setArrayPositions(int xArray, int yArray)
+    {
+        arrayPosX = xArray;
+        arrayPosY = yArray;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<BoxPosition>().setArrayPositions(xArray, yArray);
+        }
     }
 
     public void setStartPositions()
     {
-
+        
+        /*
         arrayPosX = (grid.GetComponent<Grid>().gridWidth / 2) + grid.GetComponent<Grid>().gridWidth % 2;
         arrayPosY = grid.GetComponent<Grid>().gridHeight - 2;
 
         box1.GetComponent<BoxPosition>().arrayPosX = arrayPosX;
         box1.GetComponent<BoxPosition>().arrayPosY = arrayPosY + 1;
+        Debug.Log("eka offset asetetaan nyt ");
         box1.GetComponent<BoxPosition>().offSetX = 0;
         box1.GetComponent<BoxPosition>().offSetY = 1;
+        Debug.Log("box1: x: " + box1.GetComponent<BoxPosition>().offSetX + " y: " + box1.GetComponent<BoxPosition>().offSetY);
 
         box2.GetComponent<BoxPosition>().arrayPosX = arrayPosX;
         box2.GetComponent<BoxPosition>().arrayPosY = arrayPosY;
-        box1.GetComponent<BoxPosition>().offSetX = 0;
-        box1.GetComponent<BoxPosition>().offSetY = 0;
+        Debug.Log("toka offset asetetaan nyt ");
+        box2.GetComponent<BoxPosition>().offSetX = 0;
+        box2.GetComponent<BoxPosition>().offSetY = 0;
+        Debug.Log("box2: x: " + box2.GetComponent<BoxPosition>().offSetX + " y: " + box2.GetComponent<BoxPosition>().offSetY);
 
         box3.GetComponent<BoxPosition>().arrayPosX = arrayPosX;
         box3.GetComponent<BoxPosition>().arrayPosY = arrayPosY - 1;
-        box1.GetComponent<BoxPosition>().offSetX = 0;
-        box1.GetComponent<BoxPosition>().offSetY = - 1;
+        Debug.Log("kolmas offset asetetaan nyt ");
+        box3.GetComponent<BoxPosition>().offSetX = 0;
+        box3.GetComponent<BoxPosition>().offSetY = - 1;
+        Debug.Log("box3: x: " + box3.GetComponent<BoxPosition>().offSetX + " y: " + box3.GetComponent<BoxPosition>().offSetY);
 
         box4.GetComponent<BoxPosition>().arrayPosX = arrayPosX;
         box4.GetComponent<BoxPosition>().arrayPosY = arrayPosY - 2;
-        box1.GetComponent<BoxPosition>().offSetX = 0;
-        box1.GetComponent<BoxPosition>().offSetY = - 2;
-
+        Debug.Log("neljäs offset asetetaan nyt ");
+        box4.GetComponent<BoxPosition>().offSetX = 0;
+        box4.GetComponent<BoxPosition>().offSetY = - 2;
+        Debug.Log("box4: x: " + box4.GetComponent<BoxPosition>().offSetX + " y: " + box4.GetComponent<BoxPosition>().offSetY);
+        */
     }
 }

@@ -7,25 +7,29 @@ using System.Collections;
 public class CameraScaling : MonoBehaviour {
 
     public Transform grid;
-    public Camera mainCam;
 
     public float scale;
-    public float height;
-    float scaleMultiplier = 0.6F;
 
-    float minHeight = 7.0F;
+    public float scaleMultiplier = 0.6F;
+    public float minHeight = 7.0F;
 
     public void scaleCamera()
     {
-        height = grid.GetComponent<Grid>().gridHeight;
+        float height = grid.GetComponent<Grid>().gridHeight;
+        float width = grid.GetComponent<Grid>().gridWidth;
         scale = (height * scaleMultiplier) + 1;
 
+        Camera.main.transform.position = new Vector3(width / 2.0f, height / 2.0f, -70);
+        Camera.main.orthographicSize = scale;
+        /*
         if (scale < minHeight)
         {
-            mainCam.orthographicSize = minHeight;
+            Camera.main.orthographicSize = minHeight;
         } else
         {
-            mainCam.orthographicSize = scale;
-        }
+            
+        }*/
+
+
     }
 }

@@ -20,6 +20,7 @@ public class Borders : MonoBehaviour {
 
     public void borderPosition()
     {
+        /*
         if (grid.GetComponent<Grid>().gridWidth % 2 == 0)
         {
             positionX = (grid.GetComponent<Grid>().gridWidth / 2) + 0.5F;
@@ -51,5 +52,6 @@ public class Borders : MonoBehaviour {
 
         borderDown.transform.localScale += new Vector3(scaleX, 0, 0.1F);
         borderDown.transform.position = new Vector3(0, -positionY, 0);
+        */
     }
 }

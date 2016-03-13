@@ -7,7 +7,7 @@ using System.Collections;
 public class Grid : MonoBehaviour
 {
     public Renderer GridRend;
-    public GameObject Borders;
+    public GameObject borders;
     public Camera mainCamera;
     public GameObject[,] blockPositions;
     public GameObject blockSpawn;
@@ -21,17 +21,14 @@ public class Grid : MonoBehaviour
     public int gridWidth = 10;
     public int gridHeight = 20;
 
-    public float gridScaleX;
-    public float gridScaleY;
-
     public void Start()
     {
         GridRend = GetComponent<Renderer>();
 
         changeGridScale();
         changeMaterialTiling();
-
-        Borders.GetComponent<Borders>().borderPosition();
+        borders.GetComponent<Borders>().borderPosition();
+        
         mainCamera.GetComponent<CameraScaling>().scaleCamera();
         blockPositions = new GameObject[gridWidth, gridHeight];
         initializeArray();
@@ -39,9 +36,11 @@ public class Grid : MonoBehaviour
 
     void changeGridScale()
     {
-        gridScaleX = (float)gridWidth / 10.0F;
-        gridScaleY = (float)gridHeight / 10.0F;
+        float gridScaleX = (float)gridWidth / 10.0F;
+        float gridScaleY = (float)gridHeight / 10.0F;
+
         transform.localScale += new Vector3(gridScaleX, 0, gridScaleY);
+        transform.position = new Vector3(gridWidth/2.0f, gridHeight/2.0f, 1);
     }
 
     void changeMaterialTiling()
@@ -54,7 +53,6 @@ public class Grid : MonoBehaviour
         for (int i = 0; i < gridWidth; i++)
         {
             for (int j = 0; j < gridHeight; j++)
-
             {
                 blockPositions[i, j] = null;
             }
@@ -123,5 +121,10 @@ public class Grid : MonoBehaviour
         int x = child.GetComponent<BoxPosition>().arrayPosX;
         int y = child.GetComponent<BoxPosition>().arrayPosY;
         blockPositions[x, y] = child;
+    }
+
+    public void setUnityPosition(GameObject obj, int xGridPos, int yGridPos)
+    {
+        obj.transform.position = new Vector3(xGridPos + 0.5f,yGridPos + 1.0f);
     }
 }
