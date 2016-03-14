@@ -13,6 +13,7 @@ public class Grid : MonoBehaviour
     public GameObject blockSpawn;
     public GameObject stuckBlock;
     public GameObject gameController;
+    public GameObject globalObject;
 
     public GameObject currentBlock;
 
@@ -23,8 +24,9 @@ public class Grid : MonoBehaviour
 
     public void Start()
     {
+        globalObject = GameObject.Find("GlobalObject");
         GridRend = GetComponent<Renderer>();
-
+        getGridDimensions();
         changeGridScale();
         changeMaterialTiling();
         borders.GetComponent<Borders>().borderPosition();
@@ -32,6 +34,14 @@ public class Grid : MonoBehaviour
         mainCamera.GetComponent<CameraScaling>().scaleCamera();
         blockPositions = new GameObject[gridWidth, gridHeight];
         initializeArray();
+    }
+
+    void getGridDimensions()
+    {
+        Debug.Log(globalObject.GetComponent<GlobalControl>().width);
+        Debug.Log(globalObject.GetComponent<GlobalControl>().height);
+        gridWidth = int.Parse(globalObject.GetComponent<GlobalControl>().width);
+        gridHeight = int.Parse(globalObject.GetComponent<GlobalControl>().height);
     }
 
     void changeGridScale()
@@ -58,7 +68,7 @@ public class Grid : MonoBehaviour
             }
         }
     }
-
+    //TODO: Change name
     public bool checkRotation()
     {
         for (int i = 0; i < currentBlock.transform.childCount; i++)
@@ -104,7 +114,12 @@ public class Grid : MonoBehaviour
             blockBoxPosX = child.GetComponent<BoxPosition>().arrayPosX;
             blockBoxPosY = child.GetComponent<BoxPosition>().arrayPosY;
 
-            if(dir == Directions.LEFT)
+            if (blockPositions[blockBoxPosX, blockBoxPosY] != null)
+            {
+                return false;
+            }
+
+            if (dir == Directions.LEFT)
             {
                 blockBoxPosX -= 1;
             }
@@ -135,6 +150,7 @@ public class Grid : MonoBehaviour
 
     public void moveToStuckBlocks()
     {
+        gameController.GetComponent<ScoreManager>().setScore(10);
         for (int i = currentBlock.transform.childCount -1; i >= 0; i--)
         {
             GameObject child = currentBlock.transform.GetChild(i).gameObject;
@@ -170,6 +186,7 @@ public class Grid : MonoBehaviour
         bool[] rowsToRemove = checkRowsToBeRemoved();
         int width = 0;
         int height = 0;
+        int howManyRows = 0;
 
         for (int i = 0; i < gridHeight; i++)
         {
@@ -185,6 +202,7 @@ public class Grid : MonoBehaviour
             } 
             else
             {
+                howManyRows++;
                 for (int j = 0; j < gridWidth; j++)
                 {
                     Destroy (blockPositions[j, i]);
@@ -203,6 +221,9 @@ public class Grid : MonoBehaviour
         }
 
         blockPositions = tempArray;
+        Debug.Log("howManyRows: " + howManyRows);
+        int score = howManyRows * 100;
+        gameController.GetComponent<ScoreManager>().setScore(score);
     }
 
     bool[] checkRowsToBeRemoved()

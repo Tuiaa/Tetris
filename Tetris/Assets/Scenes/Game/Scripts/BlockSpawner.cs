@@ -19,12 +19,11 @@ public class BlockSpawner : MonoBehaviour
 
     public void spawnBlock()
     {
-        
         int current;
         current = Random.Range(0, 6);
         Grid gr = grid.GetComponent<Grid>();
-
-        block = Instantiate(blocks[current],new Vector3(0,0,0), Quaternion.identity) as GameObject;
+        
+        block = Instantiate(blocks[current], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
 
         int blockOffset = block.GetComponent<CurrentBlock>().startYOffset;
         int spawnPosX = gr.gridWidth / 2;
@@ -32,11 +31,18 @@ public class BlockSpawner : MonoBehaviour
 
         grid.GetComponent<Grid>().setUnityPosition(block, spawnPosX, spawnPosY);
         block.GetComponent<CurrentBlock>().setArrayPositions(spawnPosX, spawnPosY);
-        
+       
         grid.GetComponent<Grid>().currentBlock = block;
         block.name = "CurrentBlock";
 
         block.transform.parent = transform;
+
+        bool canSpawn = grid.GetComponent<Grid>().checkRotation();
+        if (canSpawn == false)
+        {
+            Debug.Log("destroy gameobject");
+            Destroy(GameObject.Find("CurrentBlock"));
+        }
         //block.GetComponent<I_BlockBox_Position>().setStartPositions();
         //firstBlock = true;
 
@@ -48,5 +54,26 @@ public class BlockSpawner : MonoBehaviour
              next = Random.Range(0, 6);
              current = next;
          }*/
+    }
+
+    bool checkIfNewBlockCanSpawn(GameObject block)
+    {
+        for (int i = 0; i < block.transform.childCount; i++)
+        {
+            GameObject child = block.transform.GetChild(i).gameObject;
+            int posX = child.GetComponent<BoxPosition>().arrayPosX;
+            int posY = child.GetComponent<BoxPosition>().arrayPosY;
+
+            if (grid.GetComponent<Grid>().blockPositions[posX, posY] != null)
+            {
+                return false;
+            }
+            else
+            {
+                
+                return true;
+            }
+        }
+        return false;
     }
 }

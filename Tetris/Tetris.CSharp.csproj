@@ -74,11 +74,16 @@
     <Compile Include="Assets\Scenes\Game\Scripts\Blocks\T_BlockBox_Position.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Blocks\Z_BlockBox_Position.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Borders.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Buttons.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\CameraScaling.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\CurrentBlock.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\DataSaver.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\GameController.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Grid.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\TextureScaling.cs" />
+    <Compile Include="Assets\Scenes\Main menu\Scripts\GlobalControl.cs" />
+    <Compile Include="Assets\Scenes\Main menu\Scripts\InputField.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
