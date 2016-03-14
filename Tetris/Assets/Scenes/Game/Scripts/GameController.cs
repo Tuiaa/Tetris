@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public GameObject spawner;
     public GameObject grid;
     public GameObject block;
+    public GameObject gameOver;
 
     public int blockBoxPosX;
     public int blockBoxPosY;
@@ -18,6 +19,7 @@ public class GameController : MonoBehaviour
 
     public float nextMove = 0.0F;
     public int movingSpeed = 1;
+    public bool gameEnded = false;
 
     void Start()
     {
@@ -30,57 +32,67 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        block = GameObject.Find("CurrentBlock");
-
-        if (Time.time > nextMove)
+        if (gameEnded == true)
         {
-            bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
-            if (canMove)
+           gameOver.SetActive(true);
+            Vector3 gameOverPosition = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -2);
+            gameOver.transform.position = gameOverPosition;
+            
+        }
+        else
+        {
+            block = GameObject.Find("CurrentBlock");
+
+            if (Time.time > nextMove)
             {
-                block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.DOWN, movingSpeed);
-                nextMove = Time.time + movingSpeed;
+                bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
+                if (canMove)
+                {
+                    block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.DOWN, movingSpeed);
+                    nextMove = Time.time + movingSpeed;
+                }
+                else
+                {
+                    grid.GetComponent<Grid>().moveToStuckBlocks();
+                    grid.GetComponent<Grid>().removeRow();
+                    spawner.GetComponent<BlockSpawner>().spawnBlock();
+                }
             }
-            else
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.LEFT);
+                if (canMove == true)
+                {
+                    block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.LEFT, movingSpeed);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.RIGHT);
+                if (canMove)
+                {
+                    block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.RIGHT, movingSpeed);
+                }
+
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
+                while (canMove)
+                {
+                    block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.DOWN, movingSpeed);
+                    canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
+                }
+
                 grid.GetComponent<Grid>().moveToStuckBlocks();
                 grid.GetComponent<Grid>().removeRow();
                 spawner.GetComponent<BlockSpawner>().spawnBlock();
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.LEFT);
-            if (canMove == true)
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.LEFT, movingSpeed);
+                rotateBlock();
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.RIGHT);
-            if (canMove)
-            {
-                block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.RIGHT, movingSpeed);
-            }
-
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
-            while (canMove)
-            {
-                block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.DOWN, movingSpeed);
-                canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
-            }
-
-                grid.GetComponent<Grid>().moveToStuckBlocks();
-                grid.GetComponent<Grid>().removeRow();
-                spawner.GetComponent<BlockSpawner>().spawnBlock();
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            rotateBlock();
         }
     }
 

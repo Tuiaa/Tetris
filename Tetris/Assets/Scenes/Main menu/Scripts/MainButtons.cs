@@ -2,8 +2,12 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Buttons : MonoBehaviour
+public class MainButtons : MonoBehaviour
 {
+    public void startGame()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
 
     public void restartGame()
     {

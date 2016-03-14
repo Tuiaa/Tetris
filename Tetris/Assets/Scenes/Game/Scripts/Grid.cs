@@ -7,7 +7,7 @@ using System.Collections;
 public class Grid : MonoBehaviour
 {
     public Renderer GridRend;
-    public GameObject borders;
+
     public Camera mainCamera;
     public GameObject[,] blockPositions;
     public GameObject blockSpawn;
@@ -29,7 +29,6 @@ public class Grid : MonoBehaviour
         getGridDimensions();
         changeGridScale();
         changeMaterialTiling();
-        borders.GetComponent<Borders>().borderPosition();
         
         mainCamera.GetComponent<CameraScaling>().scaleCamera();
         blockPositions = new GameObject[gridWidth, gridHeight];

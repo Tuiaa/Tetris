@@ -9,6 +9,7 @@ public class BlockSpawner : MonoBehaviour
     public GameObject grid;
     public GameObject[] blocks;
     public GameObject block;
+    public GameController gameController;
     
     bool firstBlock = false;
     
@@ -40,8 +41,7 @@ public class BlockSpawner : MonoBehaviour
         bool canSpawn = grid.GetComponent<Grid>().checkRotation();
         if (canSpawn == false)
         {
-            Debug.Log("destroy gameobject");
-            Destroy(GameObject.Find("CurrentBlock"));
+            gameController.GetComponent<GameController>().gameEnded = true;
         }
         //block.GetComponent<I_BlockBox_Position>().setStartPositions();
         //firstBlock = true;
