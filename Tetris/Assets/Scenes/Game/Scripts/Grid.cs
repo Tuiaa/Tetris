@@ -37,8 +37,6 @@ public class Grid : MonoBehaviour
 
     void getGridDimensions()
     {
-        Debug.Log(globalObject.GetComponent<GlobalControl>().width);
-        Debug.Log(globalObject.GetComponent<GlobalControl>().height);
         gridWidth = int.Parse(globalObject.GetComponent<GlobalControl>().width);
         gridHeight = int.Parse(globalObject.GetComponent<GlobalControl>().height);
     }

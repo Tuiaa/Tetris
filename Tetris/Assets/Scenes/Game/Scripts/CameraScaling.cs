@@ -15,9 +15,17 @@ public class CameraScaling : MonoBehaviour {
 
     public void scaleCamera()
     {
-        float height = grid.GetComponent<Grid>().gridHeight;
         float width = grid.GetComponent<Grid>().gridWidth;
-        scale = (height * scaleMultiplier) + 1;
+        float height = grid.GetComponent<Grid>().gridHeight;
+
+        if (width >= height)
+        {
+            scale = (width * scaleMultiplier) + 1;
+        }
+        else
+        {
+            scale = (height * scaleMultiplier) + 1;
+        }
 
         Camera.main.transform.position = new Vector3(width / 2.0f, height / 2.0f, -70);
         Camera.main.orthographicSize = scale;

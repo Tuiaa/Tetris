@@ -62,28 +62,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scenes\Game\Scripts\BlockBoxPos.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\BlockSpawner.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Blocks.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\BlockSpawner.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\Blocks.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Blocks\BoxPosition.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\I_BlockBox_Position.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\J_BlockBox_Position.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\L_BlockBox_Position.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\O_BlockBox_Position.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\S_BlockBox_Position.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\T_BlockBox_Position.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\Z_BlockBox_Position.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Borders.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Buttons.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\CurrentBlock.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\CameraScaling.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\CurrentBlock.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\DataSaver.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\GameController\DataSaver.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\GameController\GameController.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\GameController\ScoreManager.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Grid.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\TextureScaling.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\UIGetBestScore.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\UIUpdateScore.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\UI\Buttons.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\UI\UIGetBestScore.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\UI\UITimer.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\UI\UIUpdateScore.cs" />
     <Compile Include="Assets\Scenes\Main menu\Scripts\GlobalControl.cs" />
     <Compile Include="Assets\Scenes\Main menu\Scripts\InputField.cs" />
     <Compile Include="Assets\Scenes\Main menu\Scripts\MainButtons.cs" />
