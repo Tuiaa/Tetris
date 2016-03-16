@@ -10,10 +10,10 @@ Basic features:
 - Best score is saved into a file
 
 Controls:
-RIGHT ARROW - Move block right
-LEFT ARROW  - Move block left
-DOWN ARROW  - Instantly move block down
-UP ARROW    - Rotate block
+* RIGHT ARROW - Move block right
+* LEFT ARROW  - Move block left
+* DOWN ARROW  - Instantly move block down
+* UP ARROW    - Rotate block
 
 Components:
 
