@@ -71,9 +71,7 @@
     <Compile Include="Assets\Scenes\Game\Scripts\GameController\ScoreManager.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Grid.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\UI\UIButtons.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\UI\UIGetBestScore.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\UI\UITimer.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\UI\UIUpdateScore.cs" />
     <Compile Include="Assets\Scenes\Main menu\Scripts\GlobalControl.cs" />
     <Compile Include="Assets\Scenes\Main menu\Scripts\InputField.cs" />
     <Compile Include="Assets\Scenes\Main menu\Scripts\MainButtons.cs" />

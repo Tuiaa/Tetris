@@ -5,15 +5,15 @@
  */
 public class Grid : MonoBehaviour
 {
-    public Renderer GridRend;
-    public Camera mainCamera;
-
-    public GameObject[,] blockPositions;
     public GameObject blockSpawn;
     public GameObject stuckBlock;
     public GameObject gameController;
-    public GameObject globalObject;
+    [HideInInspector]
     public GameObject currentBlock;
+
+    private GameObject globalObject;
+    private GameObject[,] blockPositions;
+    private Renderer GridRend;
 
     public enum Directions { LEFT, RIGHT, DOWN, UP };
 
@@ -28,7 +28,7 @@ public class Grid : MonoBehaviour
         getGridDimensions();
         changeGridScale();
         changeMaterialTiling();
-        mainCamera.GetComponent<CameraScaling>().scaleCamera();
+        Camera.main.GetComponent<CameraScaling>().scaleCamera();
 
         blockPositions = new GameObject[gridWidth, gridHeight];
         initializeArray();
@@ -148,7 +148,7 @@ public class Grid : MonoBehaviour
 
     public void moveToStuckBlocks()
     {
-        gameController.GetComponent<ScoreManager>().setScore(10);
+        gameController.GetComponent<ScoreManager>().addToScore(10);
         for (int i = currentBlock.transform.childCount - 1; i >= 0; i--)
         {
             GameObject child = currentBlock.transform.GetChild(i).gameObject;
@@ -220,7 +220,7 @@ public class Grid : MonoBehaviour
 
         blockPositions = tempArray;
         int score = howManyRows * 100;
-        gameController.GetComponent<ScoreManager>().setScore(score);
+        gameController.GetComponent<ScoreManager>().addToScore(score);
     }
 
     bool[] checkRowsToBeRemoved()

@@ -4,7 +4,8 @@ using UnityEngine.UI;
 /*
  *  Input fields for grid width and height
  */
-public class InputField : MonoBehaviour {
+public class InputField : MonoBehaviour
+{
 
     public GameObject globalObject;
 

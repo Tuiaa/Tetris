@@ -8,28 +8,27 @@ public class GameController : MonoBehaviour
 
     public GameObject spawner;
     public GameObject grid;
-    public GameObject block;
     public GameObject gameOver;
 
-    public int rotatedPosX;
-    public int rotatedPosY;
+    private GameObject block;
 
-    public float nextMove = 0.0F;
     public int movingSpeed = 1;
+    public float timeForNextMove = 1.0F;
     public bool gameEnded = false;
-    public bool gameSaved = false;
 
-    void Awake()
-    {
-        nextMove = Time.time + 1.0F;
-    }
+    private int rotatedPosX;
+    private int rotatedPosY;
+
+    private float nextMove = 0.0F;
+    private bool scoreSaved = false;
 
     void Start()
     {
-        grid = GameObject.Find("Grid");
+        //grid = GameObject.Find("Grid");
         spawner = GameObject.Find("BlockSpawner");
 
         spawner.GetComponent<BlockSpawner>().spawnBlock();
+        nextMove = Time.time + timeForNextMove;
     }
 
     void Update()
@@ -37,11 +36,14 @@ public class GameController : MonoBehaviour
         if (gameEnded == true)
         {
             gameOver.SetActive(true);
-            if (gameSaved == false)
+            if (scoreSaved == false)
             {
-                gameObject.GetComponent<DataSaver>().Save();
+                if (GetComponent<ScoreManager>().isNewHighScore())
+                {
+                    gameObject.GetComponent<DataSaver>().SaveScore();
+                }
                 GameObject.Find("Canvas").GetComponentInChildren<UITimer>().stopTimer = true;
-                gameSaved = true;
+                scoreSaved = true;
             }
         }
         else

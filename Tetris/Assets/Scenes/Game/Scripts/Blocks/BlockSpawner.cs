@@ -15,7 +15,7 @@ public class BlockSpawner : MonoBehaviour
 
     public void spawnBlock()
     {
-        int current = Random.Range(0, 6);
+        int current = Random.Range(0, blocks.Length);
         Grid gr = grid.GetComponent<Grid>();
 
         block = Instantiate(blocks[current], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;

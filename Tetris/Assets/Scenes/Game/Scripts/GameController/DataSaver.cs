@@ -16,10 +16,10 @@ public class DataSaver : MonoBehaviour
 
     void Awake()
     {
-        Load();
+        LoadScore();
     }
 
-    public void Save()
+    public void SaveScore()
     {
         BinaryFormatter bf = new BinaryFormatter();
 
@@ -33,7 +33,7 @@ public class DataSaver : MonoBehaviour
         file.Close();
     }
 
-    public void Load()
+    public void LoadScore()
     {
         if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
         {
