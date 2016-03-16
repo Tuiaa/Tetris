@@ -10,15 +10,14 @@ public class GameController : MonoBehaviour
     public GameObject grid;
     public GameObject block;
     public GameObject gameOver;
-    /*
-    public int blockBoxPosX;
-    public int blockBoxPosY;*/
+
     public int rotatedPosX;
     public int rotatedPosY;
 
     public float nextMove = 0.0F;
     public int movingSpeed = 1;
     public bool gameEnded = false;
+    public bool gameSaved = false;
 
     void Awake()
     {
@@ -27,10 +26,9 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        spawner = GameObject.Find("BlockSpawner");
         grid = GameObject.Find("Grid");
+        spawner = GameObject.Find("BlockSpawner");
 
-        
         spawner.GetComponent<BlockSpawner>().spawnBlock();
     }
 
@@ -39,7 +37,12 @@ public class GameController : MonoBehaviour
         if (gameEnded == true)
         {
             gameOver.SetActive(true);
-            gameObject.GetComponent<DataSaver>().Save();
+            if (gameSaved == false)
+            {
+                gameObject.GetComponent<DataSaver>().Save();
+                GameObject.Find("Canvas").GetComponentInChildren<UITimer>().stopTimer = true;
+                gameSaved = true;
+            }
         }
         else
         {
@@ -48,7 +51,7 @@ public class GameController : MonoBehaviour
             if (Time.time > nextMove)
             {
                 /* Check if block can move and then move it down every second */
-                bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
+                bool canMove = grid.GetComponent<Grid>().checkArrayToDirection(Grid.Directions.DOWN);
                 if (canMove)
                 {
                     block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.DOWN, movingSpeed);
@@ -65,7 +68,7 @@ public class GameController : MonoBehaviour
             /* LEFT direction */
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.LEFT);
+                bool canMove = grid.GetComponent<Grid>().checkArrayToDirection(Grid.Directions.LEFT);
                 if (canMove == true)
                 {
                     block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.LEFT, movingSpeed);
@@ -74,7 +77,7 @@ public class GameController : MonoBehaviour
             /* RIGHT direction */
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.RIGHT);
+                bool canMove = grid.GetComponent<Grid>().checkArrayToDirection(Grid.Directions.RIGHT);
                 if (canMove)
                 {
                     block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.RIGHT, movingSpeed);
@@ -83,11 +86,11 @@ public class GameController : MonoBehaviour
             /* DOWN direction */
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                bool canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
+                bool canMove = grid.GetComponent<Grid>().checkArrayToDirection(Grid.Directions.DOWN);
                 while (canMove)
                 {
                     block.GetComponent<CurrentBlock>().moveBlock(Grid.Directions.DOWN, movingSpeed);
-                    canMove = grid.GetComponent<Grid>().checkArray(Grid.Directions.DOWN);
+                    canMove = grid.GetComponent<Grid>().checkArrayToDirection(Grid.Directions.DOWN);
                 }
 
                 grid.GetComponent<Grid>().moveToStuckBlocks();
@@ -101,17 +104,6 @@ public class GameController : MonoBehaviour
             }
         }
     }
-    /*
-    void updateBoxPositions(int posX, int posY)
-    {
-        for (int i = 0; i < block.transform.childCount; i++)
-        {
-            GameObject child = block.transform.GetChild(i).gameObject;
-            child.GetComponent<BoxPosition>().arrayPosX += posX;
-            child.GetComponent<BoxPosition>().arrayPosY += posY;
-        }
-    }
-    */
 
     public void rotateBlock()
     {
@@ -120,9 +112,6 @@ public class GameController : MonoBehaviour
             for (int i = 0; i < block.transform.childCount; i++)
             {
                 GameObject child = block.transform.GetChild(i).gameObject;
-
-                int arrayPosX = child.GetComponent<BoxPosition>().arrayPosX;
-                int arrayPosY = child.GetComponent<BoxPosition>().arrayPosY;
 
                 int offSetX = child.GetComponent<BoxPosition>().offSetX;
                 int offSetY = child.GetComponent<BoxPosition>().offSetY;
@@ -135,7 +124,7 @@ public class GameController : MonoBehaviour
                 block.GetComponent<CurrentBlock>().updateChildArrayPos();
             }
 
-            bool canRotate = grid.GetComponent<Grid>().checkRotation();
+            bool canRotate = grid.GetComponent<Grid>().checkCurrentPosInArray();
 
             if (canRotate)
             {

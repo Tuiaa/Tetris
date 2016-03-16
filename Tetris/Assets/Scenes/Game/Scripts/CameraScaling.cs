@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /*
  *  Camera scaling changes when grid size is modified
  */
-public class CameraScaling : MonoBehaviour {
+public class CameraScaling : MonoBehaviour
+{
 
     public Transform grid;
 
@@ -29,15 +29,5 @@ public class CameraScaling : MonoBehaviour {
 
         Camera.main.transform.position = new Vector3(width / 2.0f, height / 2.0f, -70);
         Camera.main.orthographicSize = scale;
-        /*
-        if (scale < minHeight)
-        {
-            Camera.main.orthographicSize = minHeight;
-        } else
-        {
-            
-        }*/
-
-
     }
 }

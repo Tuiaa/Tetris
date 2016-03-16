@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scenes\Game\Scripts\Blocks\BlockSpawner.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\Blocks\Blocks.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Blocks\BoxPosition.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Blocks\CurrentBlock.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\CameraScaling.cs" />
@@ -71,8 +70,7 @@
     <Compile Include="Assets\Scenes\Game\Scripts\GameController\GameController.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\GameController\ScoreManager.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Grid.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\TextureScaling.cs" />
-    <Compile Include="Assets\Scenes\Game\Scripts\UI\Buttons.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\UI\UIButtons.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\UI\UIGetBestScore.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\UI\UITimer.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\UI\UIUpdateScore.cs" />

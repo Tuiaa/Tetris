@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /*
  *  Sets each blocks and its childrens array positions

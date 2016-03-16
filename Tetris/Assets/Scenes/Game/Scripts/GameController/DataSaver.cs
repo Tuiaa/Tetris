@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+/*
+ *  Saves data into a file and reads from it
+ */
 public class DataSaver : MonoBehaviour
 {
     [Serializable]

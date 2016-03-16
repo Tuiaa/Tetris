@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ *  Input fields for grid width and height
+ */
 public class InputField : MonoBehaviour {
 
     public GameObject globalObject;
@@ -14,5 +17,4 @@ public class InputField : MonoBehaviour {
     {
         globalObject.GetComponent<GlobalControl>().height = userInput;
     }
-
 }

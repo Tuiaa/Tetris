@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/*
+ *  Updates the current score
+ */
 public class UIUpdateScore : MonoBehaviour
 {
     public GameObject gameController;

@@ -1,22 +1,26 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
+/*
+ *  Shows time since starting the game
+ */
 public class UITimer : MonoBehaviour
 {
     public Text timerLabel;
+    public bool stopTimer = false;
 
-    private float time;
+    float time;
 
     void Update()
     {
-        time += Time.deltaTime;
+        if (stopTimer == false)
+        {
+            time += Time.deltaTime;
 
-        float minutes = time / 60; //Divide the guiTime by sixty to get the minutes.
-        float seconds = time % 60;//Use the euclidean division for the seconds.
-        //var fraction = (time * 100) % 100;
+            float minutes = time / 60;
+            float seconds = time % 60;
 
-        //update the label value
-        timerLabel.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+            timerLabel.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+        }
     }
 }

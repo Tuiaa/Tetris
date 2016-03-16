@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
+/*
+ *  Shows the best score
+ */
 public class UIGetBestScore : MonoBehaviour
 {
     public GameObject gameController;

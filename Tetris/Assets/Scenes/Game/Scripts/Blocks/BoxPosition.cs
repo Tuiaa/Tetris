@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /*
  *  Keeps track of the position of box that is inserted into an array
  *  Knows the rotation point (offset)
  */
-public class BoxPosition : MonoBehaviour {
+public class BoxPosition : MonoBehaviour
+{
 
     public int arrayPosX = 0;
     public int arrayPosY = 0;
@@ -13,9 +13,9 @@ public class BoxPosition : MonoBehaviour {
     public int offSetX = 0;
     public int offSetY = 0;
 
-    void Start ()
+    void Start()
     {
-        transform.localPosition = new Vector3(offSetX,offSetY);
+        transform.localPosition = new Vector3(offSetX, offSetY);
     }
 
     public void setArrayPositions(int parentArrayX, int parentArrayY)

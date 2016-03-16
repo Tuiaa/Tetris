@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /*
- *  Keeps track of current score
+ *  Keeps track of scores
  */
-public class ScoreManager : MonoBehaviour {
+public class ScoreManager : MonoBehaviour
+{
 
     public int score;
     public int bestScore;

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Buttons : MonoBehaviour
+/*
+ *  Button for restarting the game
+ */
+public class UIButtons : MonoBehaviour
 {
     public void restartGame()
     {
