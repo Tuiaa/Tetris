@@ -221,6 +221,7 @@ public class Grid : MonoBehaviour
         blockPositions = tempArray;
         int score = howManyRows * 100;
         gameController.GetComponent<ScoreManager>().addToScore(score);
+        gameController.GetComponent<LevelDifficulty>().decreaseRows(howManyRows);
     }
 
     bool[] checkRowsToBeRemoved()

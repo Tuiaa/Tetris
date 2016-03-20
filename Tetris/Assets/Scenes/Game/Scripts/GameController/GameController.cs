@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        //grid = GameObject.Find("Grid");
         spawner = GameObject.Find("BlockSpawner");
 
         spawner.GetComponent<BlockSpawner>().spawnBlock();

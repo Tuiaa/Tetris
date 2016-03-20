@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scenes\Game\Scripts\GameController\GameController.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\GameController\ScoreManager.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\Grid.cs" />
+    <Compile Include="Assets\Scenes\Game\Scripts\LevelDifficulty.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\UI\UIButtons.cs" />
     <Compile Include="Assets\Scenes\Game\Scripts\UI\UITimer.cs" />
     <Compile Include="Assets\Scenes\Main menu\Scripts\GlobalControl.cs" />
